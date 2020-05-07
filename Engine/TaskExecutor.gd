@@ -10,8 +10,11 @@ var running = true
 
 func _ready():
 	behaviour_tree = behaviour_tree_scene.instance()
-	behaviour_tree.task_enter(blackboard)
+	call_deferred("_btree_enter")
 
+func _btree_enter():
+	behaviour_tree.task_enter(blackboard)
+	
 func _process(delta):
 	if not physics_update:
 		update_tree(delta)
